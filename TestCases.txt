@@ -3,3 +3,5 @@ class TestPrimeNumbers(unittest.TestCase):
     def test_input_is_number(self):
         with self.assertRaises(TypeError):
             prime_numbers("String")
+    def test_range_is_short(self):
+        self.assertEquals(prime_numbers(1,4),3)
