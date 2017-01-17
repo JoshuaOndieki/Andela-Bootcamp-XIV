@@ -5,3 +5,5 @@ class TestPrimeNumbers(unittest.TestCase):
             prime_numbers("String")
     def test_range_is_short(self):
         self.assertEquals(prime_numbers(1,4),3)
+    def test_range_is_positive(self):
+        self.assertGreater(upperlimit-lower_limit)
