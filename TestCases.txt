@@ -1,0 +1,5 @@
+import unittest
+class TestPrimeNumbers(unittest.TestCase):
+    def test_input_is_number(self):
+        with self.assertRaises(TypeError):
+            prime_numbers("String")
