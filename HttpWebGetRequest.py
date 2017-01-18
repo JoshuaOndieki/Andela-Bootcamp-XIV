@@ -1,7 +1,7 @@
 import requests
 def get_data(url_address):
-    url_test=url_address[0:11]
-    if url_test.lower=="http://".lower:
+    url_test=url_address[0:7]
+    if url_test=="http://":
         data = requests.get(url_address)
         return data
     else:
