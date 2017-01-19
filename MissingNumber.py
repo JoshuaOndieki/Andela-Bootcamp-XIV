@@ -16,7 +16,7 @@ def find_missing(array1,array2):
             if i in array1:
                 pass
             else:
-                return i #return missing the value
+                return i #return the missing value
     #else the arrays are equal then just like the null arrays, return 0
     else:
         return 0
