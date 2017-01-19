@@ -1,35 +1,53 @@
 class BinarySearch(list):
     def __init__(self, a, b):
-        super(BinarySearch, self).__init__((range(b, (b * a) + 1, b)))
-        self.list_built = (range(b, (b * a) + 1, b))
-        self.length = len(self.list_built)
-        self.count = 0
-        self.iter_num = {}
+        data = []
+        data.append(b)
+        list_len = 1
+        while list_len < a:
+            data.append(data[list_len - 1] + b)
+            list_len += 1
+        super(BinarySearch, self).__init__(data)
+        self.length = len(data)
 
-    def search(self, search_term):
-        try:
-            list_built = self.list_built
-            self.iter_num = {}
-            if search_term is not None:
-                while self.length > 0:
-                    self.count += 1
-                    mid = int(self.length / 2)
-                    if mid >= 1:
-                        if search_term == list_built[mid]:
-                            self.iter_num['count'] = self.count
-                            self.iter_num['index'] = self.list_built.index(search_term)
-                            try:
-                                return self.iter_num
-                            except TypeError:
-                                self.iter_num = {}
-                                return 0
-                        elif search_term < list_built[mid]:
-                            list_built = list_built[:mid]
-                        elif search_term > list_built[mid]:
-                            list_built = list_built[mid + 1:]
+    def search(self, number):
+        count = 0
+        first = 0
+        self.length = len(self)
+        last = self.length - 1
+        mid_point = int((last) / 2)
+        obj_location = {'count': '', 'index': ''}
+        while first < mid_point:
 
-                        self.length = mid
-                    else:
-                        break
-        except TypeError:
-            return 0
+            if (first == mid_point) and (self[first] > number):
+                index = -1
+                obj_location["count"] = self.length
+                obj_location["index"] = index
+                return obj_location
+
+            elif self[first] == number:
+                index = first
+                obj_location["count"] = count
+                obj_location["index"] = index
+                return obj_location
+            elif self[last] == number:
+                index = last
+                obj_location["count"] = count
+                obj_location["index"] = index
+                return obj_location
+            elif self[mid_point] == number:
+                index = mid_point
+                obj_location["count"] = count
+                obj_location["index"] = index
+                return obj_location
+            else:
+                if self[mid_point] > number:
+                    last = mid_point - 1
+                    first = first + 1
+                    mid_point = (last + first) // 2
+                else:
+                    first = mid_point + 1
+                    last = last - 1
+                    mid_point = ((last + first) // 2) + 1
+            count += 1
+        obj_location = {'count': count, 'index': -1}
+        return obj_location
